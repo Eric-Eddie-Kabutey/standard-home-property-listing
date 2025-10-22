@@ -10,7 +10,7 @@ import { Menu, X } from "lucide-react";
 
 // --- Data for navigation links ---
 const navLinks = [
-  { label: "Rent", href: "/rent" },
+  { label: "Rent", href: "/welcome" },
   { label: "Our Solution", href: "/our-solution" },
   { label: "About us", href: "/about-us" },
 ];
