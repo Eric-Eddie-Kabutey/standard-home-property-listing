@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import type { FC } from "react";
 import { motion, Variants } from "framer-motion";
+import LocationPopup from "./location-popup";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -52,6 +53,8 @@ const Hero: FC = () => {
               {/* <GlobeArcs /> */}
               <Image src='/assets/images/globe.png' alt="Globe Illustration" fill className="object-contain" priority />
       </div>
+
+      <LocationPopup className="bottom-0 md:bottom-20 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
       {/* Main Content */}
       <div className="relative h-full flex flex-col items-center z-20 pt-36 md:pt-44 2xl:pt-52">
