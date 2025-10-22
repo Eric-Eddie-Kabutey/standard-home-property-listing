@@ -20,13 +20,13 @@ const itemVariants: Variants = {
 
 const Hero: FC = () => {
   return (
-    <section className="relative w-full h-screen min-h-[700px] md:min-h-[800px] bg-black text-white overflow-hidden">
+    <section className="relative w-full h-[80vh] md:h-[160vh] 2xl:h-[110vh]  bg-black text-white outline overflow-hidden">
       {/* Background Swirls */}
       <motion.div
         initial={{ opacity: 0, scale: 1.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
-        className="absolute -top-1/4 left-1/2 -translate-x-1/2 w-[150vw] h-[150vw] md:w-[100vw] md:h-[100vw] pointer-events-none"
+        className="hidden md:block absolute -top-1/4 left-1/2 -translate-x-1/2 w-[150vw] h-[150vw] md:w-[100vw] md:h-[95vw] 2xl:h-[90vh] pointer-events-none"
       >
         <Image src="/background-swirl.svg" alt="background swirl" fill className="opacity-40" />
       </motion.div>
@@ -36,25 +36,25 @@ const Hero: FC = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[60vh] md:h-[80vh] max-w-[1400px] z-10 pointer-events-none"
+        className="hidden md:block absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[60vh] md:h-[80vh] max-w-[1400px] z-10 pointer-events-none"
       >
         <Image
           src="/assets/image/globe.png"
-          alt="Globe illustration"
+          alt="SVG Background"
           fill
           className="object-contain object-bottom"
           priority
         />
       </motion.div>
 
-      {/* Animated Arcs Layer */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[60vh] md:h-[80vh] max-w-[1400px] z-15 pointer-events-none">
+      {/* Globe Animated Arcs Layer */}
+      <div className="absolute -bottom-42 md:-bottom-15 2xl:-bottom-35 left-1/2 -translate-x-1/2 w-full h-[60vh] md:h-[80vh] 2xl:-w-full container mx-auto lg:max-w-5xl xl:max-w-6xl z-15 pointer-events-none">
               {/* <GlobeArcs /> */}
-              <Image src='/assets/images/globe.png' alt="Globe Illustration" fill className="" priority />
+              <Image src='/assets/images/globe.png' alt="Globe Illustration" fill className="object-contain" priority />
       </div>
 
       {/* Main Content */}
-      <div className="relative h-full flex flex-col items-center z-20 pt-8 md:pt-16">
+      <div className="relative h-full flex flex-col items-center z-20 pt-36 md:pt-44 2xl:pt-52">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -63,7 +63,7 @@ const Hero: FC = () => {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-snug"
           >
             Turning Ideas Into World
             <br />
@@ -84,14 +84,14 @@ const Hero: FC = () => {
           >
             <Button
               size="lg"
-              className="bg-green-500 text-black font-semibold hover:bg-green-600 px-8 py-6 text-base rounded-lg transition-transform hover:scale-105"
+              className="bg-green-500 text-black border-green-400 font-semibold hover:bg-green-600 px-8 py-6 text-base transition-transform hover:scale-105"
             >
               Get In Touch
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="bg-gray-100 text-black border-gray-100 hover:bg-gray-200 px-8 py-6 text-base font-semibold rounded-lg transition-transform hover:scale-105"
+              className="bg-gray-100 text-black border-gray-100 hover:bg-gray-200 px-8 py-6 text-base font-semibold transition-transform hover:scale-105"
             >
               Explore Our Programs
             </Button>
