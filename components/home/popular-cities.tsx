@@ -68,7 +68,7 @@ const PopularCities: FC = () => {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.8 }}
-      className="relative bg-[#0A2540] text-white py-20 md:py-28 overflow-hidden"
+      className="relative bg-[#031136] text-white py-20 md:py-28 overflow-hidden"
     >
       {/* --- Decorative Background Lines --- */}
       <div className="absolute top-0 right-0 h-full w-1/3 pointer-events-none">
