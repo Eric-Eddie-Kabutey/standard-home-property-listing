@@ -10,7 +10,7 @@ import { Menu, X } from "lucide-react";
 
 // --- Data for navigation links ---
 const navLinks = [
-  { label: "Rent", href: "/welcome" },
+  { label: "Rent", href: "/rent" }, // This will be for property listings later
   { label: "Our Solution", href: "/our-solution" },
   { label: "About us", href: "/about-us" },
 ];
@@ -83,11 +83,13 @@ const Header: FC = () => {
             <button aria-label="Select language" className="text-2xl p-1 rounded-md hover:bg-white/10 transition-colors">
               🇬🇧
             </button>
-            <Button
-              className="bg-[#FF4F00] text-white font-bold hover:bg-[#FF4F00]/90 rounded-lg px-5"
-            >
-              Sign up
-            </Button>
+            <Link href="/welcome">
+              <Button
+                className="bg-[#FF4F00] text-white font-bold hover:bg-[#FF4F00]/90 rounded-lg px-5"
+              >
+                Sign up
+              </Button>
+            </Link>
             <Link href="/login" className="text-white font-medium hover:text-slate-300 transition-colors">
               Log in
             </Link>
@@ -119,14 +121,16 @@ const Header: FC = () => {
                 ))}
                 <div className="w-full border-t border-white/20" />
                 <div className="flex flex-col items-center w-full space-y-4">
-                   <Button
+                  <Link href="/welcome" onClick={() => setIsMenuOpen(false)} className="w-full">
+                    <Button
                       className="w-full bg-[#FF4F00] text-white font-bold hover:bg-[#FF4F00]/90 rounded-lg py-3 text-lg"
                     >
                       Sign up
                     </Button>
-                    <Link href="/login" onClick={() => setIsMenuOpen(false)} className="text-white text-lg font-medium">
-                      Log in
-                    </Link>
+                  </Link>
+                  <Link href="/login" onClick={() => setIsMenuOpen(false)} className="text-white text-lg font-medium">
+                    Log in
+                  </Link>
                 </div>
               </nav>
             </motion.div>

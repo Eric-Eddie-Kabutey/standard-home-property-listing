@@ -17,12 +17,12 @@ import Step3SignUp from "../form/multi-step-form/steps/step-three-signup";
 const formSchema = z.object({
   // Step 1
   city: z.string().min(1, { message: "Please select a city." }),
-  priceMin: z.coerce.number().optional(),
-  priceMax: z.coerce.number().optional(),
+  priceMin: z.number().optional(),
+  priceMax: z.number().optional(),
   // Step 2
   housingTypes: z.array(z.string()).min(1, { message: "Please select at least one housing type." }),
   furnishing: z.array(z.string()),
-  minSurface: z.coerce.number().optional(),
+  minSurface: z.number().optional(),
   rooms: z.array(z.string()),
   bedrooms: z.array(z.string()),
   amenities: z.array(z.string()),
@@ -30,7 +30,7 @@ const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email." }),
   password: z.string().min(8, { message: "Password must be at least 8 characters." }),
-});
+}) satisfies z.ZodType<FormValues>;
 
 export type FormValues = {
   city: string;
@@ -51,25 +51,24 @@ const MultiStepSearchForm: FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const router = useRouter();
 
-  const form = useForm<FormValues, undefined, FormValues>({
-    resolver: zodResolver(formSchema),
-    mode: "onChange",
-    defaultValues: {
-      city: "",
-      priceMin: undefined,
-      priceMax: undefined,
-      housingTypes: [],
-      furnishing: [],
-      minSurface: undefined,
-      rooms: [],
-      bedrooms: [],
-      amenities: [],
-      name: "",
-      email: "",
-      password: "",
-    },
-  });
-
+  const form = useForm<FormValues>({
+  resolver: zodResolver(formSchema),
+  mode: "onChange",
+  defaultValues: {
+    city: "",
+    priceMin: undefined,
+    priceMax: undefined,
+    housingTypes: [],
+    furnishing: [],
+    minSurface: undefined,
+    rooms: [],
+    bedrooms: [],
+    amenities: [],
+    name: "",
+    email: "",
+    password: "",
+  },
+});
   const handleNext = async () => {
     let fieldsToValidate: (keyof FormValues)[] = [];
     if (currentStep === 1) fieldsToValidate = ["city"];
