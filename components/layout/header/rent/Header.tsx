@@ -29,7 +29,7 @@ const Header: FC = () => {
             >
               Sign up
             </Button>
-            <Link href="#" className="text-[#FF4F00] font-medium hover:text-slate-300 transition-colors">
+            <Link href="/login" className="text-[#FF4F00] font-medium hover:text-slate-300 transition-colors">
               Log in
             </Link>
           </div>
