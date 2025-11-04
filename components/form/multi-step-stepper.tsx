@@ -39,7 +39,7 @@ const MultiStepStepper: FC<StepperProps> = ({ currentStep }) => {
                 </span>
               </span>
               <span className={clsx(
-                "ml-4 hidden md:block",
+                "ml-4 mb-3 text-lg hidden md:block",
                 currentStep >= step.id ? "text-[#0A2540]" : "text-gray-500"
               )}>
                 {step.name}
