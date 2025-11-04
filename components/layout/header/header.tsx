@@ -88,7 +88,7 @@ const Header: FC = () => {
             >
               Sign up
             </Button>
-            <Link href="#" className="text-white font-medium hover:text-slate-300 transition-colors">
+            <Link href="/login" className="text-white font-medium hover:text-slate-300 transition-colors">
               Log in
             </Link>
           </div>
@@ -124,7 +124,7 @@ const Header: FC = () => {
                     >
                       Sign up
                     </Button>
-                    <Link href="#" onClick={() => setIsMenuOpen(false)} className="text-white text-lg font-medium">
+                    <Link href="/login" onClick={() => setIsMenuOpen(false)} className="text-white text-lg font-medium">
                       Log in
                     </Link>
                 </div>
