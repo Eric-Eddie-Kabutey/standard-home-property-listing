@@ -81,7 +81,7 @@ const Header: FC = () => {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-5">
             <button aria-label="Select language" className="text-2xl p-1 rounded-md hover:bg-white/10 transition-colors">
-              🇬🇧
+              🇬🇲
             </button>
             <Link href="/welcome">
               <Button

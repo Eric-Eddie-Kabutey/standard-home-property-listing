@@ -1,6 +1,8 @@
 "use client";
 
-import type { FC } from "react";
+import { FC } from "react";
+import { Check } from "lucide-react";
+import { motion } from "framer-motion";
 import clsx from "clsx";
 
 const steps = [
@@ -9,55 +11,54 @@ const steps = [
   { id: 3, name: "Let's go!" },
 ];
 
-interface StepperProps {
+interface MultiStepStepperProps {
   currentStep: number;
 }
 
-const MultiStepStepper: FC<StepperProps> = ({ currentStep }) => {
+const MultiStepStepper: FC<MultiStepStepperProps> = ({ currentStep }) => {
   return (
-    <nav aria-label="Progress">
-      <ol role="list" className="flex items-center">
-        {steps.map((step, stepIdx) => (
-          <li
-            key={step.name}
-            className={clsx(
-              "relative",
-              stepIdx !== steps.length - 1 ? "flex-1" : ""
-            )}
-          >
-            <div className="flex items-center text-sm font-medium">
-              <span className={clsx(
-                "flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2",
-                currentStep > step.id ? "border-[#0A2540] bg-[#0A2540]" :
-                currentStep === step.id ? "border-[#0A2540]" : "border-gray-300"
-              )}>
-                <span className={clsx(
-                  currentStep > step.id ? "text-white" :
-                  currentStep === step.id ? "text-[#0A2540]" : "text-gray-500"
-                )}>
-                  {step.id}
-                </span>
-              </span>
-              <span className={clsx(
-                "ml-4 mb-3 text-lg hidden md:block",
-                currentStep >= step.id ? "text-[#0A2540]" : "text-gray-500"
-              )}>
-                {step.name}
-              </span>
-            </div>
+    <nav aria-label="Progress" className="flex items-center justify-center">
+      <ol className="flex items-center space-x-8 md:space-x-16">
+        {steps.map((step, idx) => (
+          <li key={step.id} className="relative flex items-center">
+            <motion.div
+              layout
+              className={clsx(
+                "flex h-12 w-12 items-center justify-center rounded-full border-4 text-lg font-bold transition-all",
+                currentStep > step.id
+                  ? "border-indigo-600 bg-indigo-600 text-white"
+                  : currentStep === step.id
+                  ? "border-indigo-600 bg-white text-indigo-600"
+                  : "border-gray-300 bg-white text-gray-400"
+              )}
+            >
+              {currentStep > step.id ? (
+                <Check className="h-6 w-6" />
+              ) : (
+                step.id
+              )}
+            </motion.div>
 
-            {/* Connecting line */}
-            {stepIdx !== steps.length - 1 ? (
-              <div
-                className="absolute top-5 left-12 -ml-px mt-0.5 h-0.5 w-full bg-gray-300"
-                aria-hidden="true"
-              >
-                 <div className={clsx(
-                    "h-full bg-[#0A2540] transition-all duration-300",
-                    currentStep > step.id ? "w-full" : "w-0"
-                 )}/>
+            <span
+              className={clsx(
+                "ml-3 text-lg font-medium hidden md:block",
+                currentStep >= step.id ? "text-indigo-600" : "text-gray-400"
+              )}
+            >
+              {step.name}
+            </span>
+
+            {idx < steps.length - 1 && (
+              <div className="absolute top-6 left-12 -ml-px h-0.5 w-full md:w-16 bg-gray-300">
+                <motion.div
+                  className="h-full bg-indigo-600"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scale: currentStep > step.id ? 1 : 0 }}
+                  transition={{ duration: 0.4 }}
+                  style={{ transformOrigin: "left" }}
+                />
               </div>
-            ) : null}
+            )}
           </li>
         ))}
       </ol>

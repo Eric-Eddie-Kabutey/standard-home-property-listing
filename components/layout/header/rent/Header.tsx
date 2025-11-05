@@ -22,7 +22,7 @@ const Header: FC = () => {
           {/* Right Side Actions */}
           <div className="hidden md:flex items-center gap-5">
             <button aria-label="Select language" className="text-2xl p-1 rounded-md hover:bg-white/10 transition-colors">
-              🇬🇧
+             🇬🇲
             </button>
             <Button
               className="bg-[#FF4F00] text-white font-bold hover:bg-[#FF4F00]/90 rounded-lg px-5"

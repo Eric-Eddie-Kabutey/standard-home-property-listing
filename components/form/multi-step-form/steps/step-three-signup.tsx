@@ -2,67 +2,97 @@
 
 import { FC } from "react";
 import { UseFormReturn } from "react-hook-form";
-import { FormValues } from "../../multi-step-search-form";
+import { FormValues } from "@/lib/searchSchema";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { User, Mail, Lock } from "lucide-react";
-import Link from "next/link";
+import { Form } from "@/components/ui/form";
+import { CheckCircle2, Mail, User, Lock } from "lucide-react";
+import confetti from "canvas-confetti";
+import { useRouter } from "next/navigation";
 
 interface Step3Props {
   form: UseFormReturn<FormValues>;
   onBack: () => void;
 }
 
-const Step3SignUp: FC<Step3Props> = ({ form, onBack }) => {
+const Step3Summary: FC<Step3Props> = ({ form, onBack }) => {
+  const router = useRouter();
+//   const values = form.getValues();
+
+  const handleSubmit = () => {
+    confetti({
+      particleCount: 120,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+    setTimeout(() => router.push("/plan"), 800);
+  };
+
   return (
     <Form {...form}>
-      <div className="max-w-2xl mx-auto">
-        <div className="bg-[#0A2540] text-white p-6 rounded-t-xl text-center">
-            <h2 className="text-2xl font-bold">Receive matches directly in your inbox!</h2>
+      <div className="mx-auto max-w-2xl">
+  <div className="rounded-2xl bg-gradient-to-br from-indigo-600 to-orange-500 p-8 text-white">          <CheckCircle2 className="mx-auto h-16 w-16" />
+        <h2 className="mt-4 text-3xl font-bold">You&apos;re all set!</h2>
+  <p className="mt-2 text-lg opacity-90">We&apos;ll send matches directly to your inbox</p>
+
         </div>
-        <div className="bg-white p-8 rounded-b-xl shadow-lg border border-gray-200">
-             <div className="space-y-4">
-                <FormField control={form.control} name="name" render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Your name</FormLabel>
-                        <FormControl>
-                            <div className="relative"><User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" /><Input placeholder="Enter your name" className="pl-10" {...field} /></div>
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}/>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     <FormField control={form.control} name="email" render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>E-mail</FormLabel>
-                            <FormControl>
-                                <div className="relative"><Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" /><Input type="email" placeholder="your@email.com" className="pl-10" {...field} /></div>
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}/>
-                     <FormField control={form.control} name="password" render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Password</FormLabel>
-                            <FormControl>
-                                <div className="relative"><Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" /><Input type="password" placeholder="Password" className="pl-10" {...field} /></div>
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}/>
-                </div>
-                <p className="text-xs text-slate-500">By creating an account, you accept our <Link href="#" className="text-[#FF4F00] underline">terms and conditions</Link></p>
-                <div className="flex justify-between items-center pt-4">
-                    <Button type="button" variant="ghost" onClick={onBack}>&larr; Back</Button>
-                    {/* This button is now type="submit" and triggers the main form's onSubmit */}
-                    <Button type="submit" className="bg-[#FF4F00] hover:bg-[#FF4F00]/90">Send me all matches &rarr;</Button>
-                </div>
-             </div>
+
+        <div className="mt-8 space-y-6 rounded-b-2xl bg-white p-8 shadow-xl">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <User className="h-5 w-5 text-indigo-600" />              
+              <input
+                placeholder="Your name"
+                className="w-full rounded-lg border px-4 py-3"
+                {...form.register("name")}
+              />
+            </div>
+            <div className="flex items-center gap-3">
+               <Mail className="h-5 w-5 text-indigo-600" />              
+               <input
+                type="email"
+                placeholder="your@email.com"
+                className="w-full rounded-lg border px-4 py-3"
+                {...form.register("email")}
+              />
+            </div>
+            <div className="flex items-center gap-3">
+              <Lock className="h-5 w-5 text-indigo-600" />              
+              <input
+                type="password"
+                placeholder="Create password"
+                className="w-full rounded-lg border px-4 py-3"
+                {...form.register("password")}
+              />
+            </div>
+          </div>
+
+          <p className="text-xs text-gray-500">
+           By continuing, you agree to our{" "}
+          <a href="#" className="text-orange-600 underline">
+              Terms
+           </a>{" "}
+               and{" "}
+            <a href="#" className="text-orange-600 underline">
+                Privacy Policy
+            </a>
+          </p>
+
+          <div className="flex justify-between pt-4">
+            <Button type="button" variant="ghost" onClick={onBack}>
+              Back
+            </Button>
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              className="bg-orange-500 px-8 py-6 text-lg font-bold hover:bg-orange-600"
+            >
+              Start Receiving Matches
+            </Button>
+          </div>
         </div>
       </div>
     </Form>
   );
 };
 
-export default Step3SignUp;
+export default Step3Summary;
