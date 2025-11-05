@@ -181,9 +181,9 @@ const LoginForm: React.FC = () => {
         <hr className="border-gray-200" />
 
         <p className="text-sm text-center text-gray-600">
-          <p>Don&apos;t have an account?</p>
- <a href="#" className="font-medium text-indigo-600 hover:underline">Sign up</a>
-        </p>
+         Don&apos;t have an account?{' '}
+       <a href="#" className="font-medium text-indigo-600 hover:underline">Sign up</a>
+      </p>
       </div>
 
       <button className="fixed bottom-6 right-6 bg-indigo-900 text-white p-4 rounded-full shadow-lg hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-transform duration-300 hover:scale-110">
