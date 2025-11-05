@@ -26,9 +26,9 @@ const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
-  const [authState, setAuthState] = useState<AuthState>('login');
+  const [authState] = useState<AuthState>('login');
 //   const router = useRouter();
 
   const [displayedTitle, setDisplayedTitle] = useState('');

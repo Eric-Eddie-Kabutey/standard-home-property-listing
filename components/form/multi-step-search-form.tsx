@@ -56,11 +56,8 @@ const MultiStepSearchForm: FC = () => {
   mode: "onChange",
   defaultValues: {
     city: "",
-    priceMin: undefined,
-    priceMax: undefined,
     housingTypes: [],
     furnishing: [],
-    minSurface: undefined,
     rooms: [],
     bedrooms: [],
     amenities: [],
