@@ -14,9 +14,8 @@ interface Step3Props {
   onBack: () => void;
 }
 
-const Step3Summary: FC<Step3Props> = ({ form, onBack }) => {
+const Step3Signup: FC<Step3Props> = ({ form, onBack }) => {
   const router = useRouter();
-//   const values = form.getValues();
 
   const handleSubmit = () => {
     confetti({
@@ -30,16 +29,18 @@ const Step3Summary: FC<Step3Props> = ({ form, onBack }) => {
   return (
     <Form {...form}>
       <div className="mx-auto max-w-2xl">
-  <div className="rounded-2xl bg-gradient-to-br from-indigo-600 to-orange-500 p-8 text-white">          <CheckCircle2 className="mx-auto h-16 w-16" />
-        <h2 className="mt-4 text-3xl font-bold">You&apos;re all set!</h2>
-  <p className="mt-2 text-lg opacity-90">We&apos;ll send matches directly to your inbox</p>
-
+        <div className="rounded-2xl bg-gradient-to-br from-indigo-600 to-orange-500 p-8 text-white text-center">
+          <CheckCircle2 className="mx-auto h-16 w-16" />
+          <h2 className="mt-4 text-3xl font-bold">You&apos;re all set!</h2>
+          <p className="mt-2 text-lg opacity-90">
+            We&apos;ll send matches directly to your inbox
+          </p>
         </div>
 
         <div className="mt-8 space-y-6 rounded-b-2xl bg-white p-8 shadow-xl">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <User className="h-5 w-5 text-indigo-600" />              
+              <User className="h-5 w-5 text-indigo-600" />
               <input
                 placeholder="Your name"
                 className="w-full rounded-lg border px-4 py-3"
@@ -47,8 +48,8 @@ const Step3Summary: FC<Step3Props> = ({ form, onBack }) => {
               />
             </div>
             <div className="flex items-center gap-3">
-               <Mail className="h-5 w-5 text-indigo-600" />              
-               <input
+              <Mail className="h-5 w-5 text-indigo-600" />
+              <input
                 type="email"
                 placeholder="your@email.com"
                 className="w-full rounded-lg border px-4 py-3"
@@ -56,7 +57,7 @@ const Step3Summary: FC<Step3Props> = ({ form, onBack }) => {
               />
             </div>
             <div className="flex items-center gap-3">
-              <Lock className="h-5 w-5 text-indigo-600" />              
+              <Lock className="h-5 w-5 text-indigo-600" />
               <input
                 type="password"
                 placeholder="Create password"
@@ -67,14 +68,15 @@ const Step3Summary: FC<Step3Props> = ({ form, onBack }) => {
           </div>
 
           <p className="text-xs text-gray-500">
-           By continuing, you agree to our{" "}
-          <a href="#" className="text-orange-600 underline">
-              Terms
-           </a>{" "}
-               and{" "}
+            By continuing, you agree to our{" "}
             <a href="#" className="text-orange-600 underline">
-                Privacy Policy
+              Terms
+            </a>{" "}
+            and{" "}
+            <a href="#" className="text-orange-600 underline">
+              Privacy Policy
             </a>
+            .
           </p>
 
           <div className="flex justify-between pt-4">
@@ -95,4 +97,4 @@ const Step3Summary: FC<Step3Props> = ({ form, onBack }) => {
   );
 };
 
-export default Step3Summary;
+export default Step3Signup;
