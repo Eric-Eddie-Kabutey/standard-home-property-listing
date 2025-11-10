@@ -29,7 +29,7 @@ export const cities = [
 export const properties: Property[] = [
   {
     id: "p001",
-    image: "/assets/images/property-1.png",
+    image: "/assets/images/properties/property-1.png",
     timeAgo: "46 secs ago",
     type: "Apartment",
     price: 17950,
@@ -41,7 +41,7 @@ export const properties: Property[] = [
   },
   {
     id: "p002",
-    image: "/assets/images/property-2.png",
+    image: "/assets/images/properties/property-2.png",
     timeAgo: "1 min ago",
     type: "House",
     price: 28500,
@@ -53,7 +53,7 @@ export const properties: Property[] = [
   },
   {
     id: "p003",
-    image: "/assets/images/property-3.png",
+    image: "/assets/images/properties/property-3.png",
     timeAgo: "2 min ago",
     type: "Apartment",
     price: 12000,
@@ -65,7 +65,7 @@ export const properties: Property[] = [
   },
   {
     id: "p004",
-    image: "/assets/images/property-4.png",
+    image: "/assets/images/properties/property-4.png",
     timeAgo: "5 min ago",
     type: "House",
     price: 35000,
@@ -77,7 +77,7 @@ export const properties: Property[] = [
   },
   {
     id: "p005",
-    image: "/assets/images/property-5.png",
+    image: "/assets/images/properties/property-5.png",
     timeAgo: "8 min ago",
     type: "Apartment",
     price: 15000,
@@ -89,7 +89,7 @@ export const properties: Property[] = [
   },
   {
     id: "p006",
-    image: "/assets/images/property-6.png",
+    image: "/assets/images/properties/property-6.png",
     timeAgo: "10 min ago",
     type: "Villa",
     price: 55000,
@@ -101,7 +101,7 @@ export const properties: Property[] = [
   },
   {
     id: "p007",
-    image: "/assets/images/property-7.png",
+    image: "/assets/images/properties/property-7.png",
     timeAgo: "12 min ago",
     type: "House",
     price: 22000,
@@ -113,7 +113,7 @@ export const properties: Property[] = [
   },
   {
     id: "p008",
-    image: "/assets/images/property-8.png",
+    image: "/assets/images/properties/property-8.png",
     timeAgo: "15 min ago",
     type: "Apartment",
     price: 9000,
@@ -125,7 +125,7 @@ export const properties: Property[] = [
   },
   {
     id: "p009",
-    image: "/assets/images/property-9.png",
+    image: "/assets/images/properties/property-9.png",
     timeAgo: "18 min ago",
     type: "Land",
     price: 75000, 
@@ -137,7 +137,7 @@ export const properties: Property[] = [
   },
   {
     id: "p010",
-    image: "/assets/images/property-10.png",
+    image: "/assets/images/properties/property-10.png",
     timeAgo: "20 min ago",
     type: "House",
     price: 40000,
@@ -149,7 +149,7 @@ export const properties: Property[] = [
   },
   {
     id: "p011",
-    image: "/assets/images/property-11.png",
+    image: "/assets/images/properties/property-11.png",
     timeAgo: "22 min ago",
     type: "Apartment",
     price: 18000,
@@ -161,7 +161,7 @@ export const properties: Property[] = [
   },
   {
     id: "p012",
-    image: "/assets/images/property-12.png",
+    image: "/assets/images/properties/property-12.png",
     timeAgo: "25 min ago",
     type: "House",
     price: 25000,
@@ -173,7 +173,7 @@ export const properties: Property[] = [
   },
   {
     id: "p013",
-    image: "/assets/images/property-13.png",
+    image: "/assets/images/properties/property-13.png",
     timeAgo: "28 min ago",
     type: "Apartment",
     price: 10500,
@@ -185,7 +185,7 @@ export const properties: Property[] = [
   },
   {
     id: "p014",
-    image: "/assets/images/property-14.png",
+    image: "/assets/images/properties/property-14.png",
     timeAgo: "30 min ago",
     type: "Villa",
     price: 60000,
@@ -197,7 +197,7 @@ export const properties: Property[] = [
   },
   {
     id: "p015",
-    image: "/assets/images/property-15.png",
+    image: "/assets/images/properties/property-15.png",
     timeAgo: "32 min ago",
     type: "House",
     price: 30000,
@@ -209,7 +209,7 @@ export const properties: Property[] = [
   },
   {
     id: "p016",
-    image: "/assets/images/property-16.png",
+    image: "/assets/images/properties/property-16.png",
     timeAgo: "35 min ago",
     type: "Apartment",
     price: 14000,
@@ -221,7 +221,7 @@ export const properties: Property[] = [
   },
   {
     id: "p017",
-    image: "/assets/images/property-17.png",
+    image: "/assets/images/properties/property-17.png",
     timeAgo: "38 min ago",
     type: "House",
     price: 27000,
@@ -233,7 +233,7 @@ export const properties: Property[] = [
   },
   {
     id: "p018",
-    image: "/assets/images/property-18.png",
+    image: "/assets/images/properties/property-18.png",
     timeAgo: "40 min ago",
     type: "Apartment",
     price: 9500,
@@ -245,7 +245,7 @@ export const properties: Property[] = [
   },
   {
     id: "p019",
-    image: "/assets/images/property-19.png",
+    image: "/assets/images/properties/property-19.png",
     timeAgo: "42 min ago",
     type: "House",
     price: 32000,
@@ -257,7 +257,7 @@ export const properties: Property[] = [
   },
   {
     id: "p020",
-    image: "/assets/images/property-20.png",
+    image: "/assets/images/properties/property-20.png",
     timeAgo: "45 min ago",
     type: "Villa",
     price: 70000,

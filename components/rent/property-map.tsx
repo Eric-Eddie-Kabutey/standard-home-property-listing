@@ -29,7 +29,7 @@ const PropertyMap = ({ totalOffers, currentOffers }: PropertyMapProps) => {
       aria-label="Map displaying property locations"
     >
       <Image
-        src="/assets/images/gambia-map-placeholder.png"
+        src="/assets/images/properties/gambia-map-placeholder.png"
         alt="Map of The Gambia with property locations"
         fill
         style={{ objectFit: "cover" }}
