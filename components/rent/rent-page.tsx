@@ -2,24 +2,34 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { ListFilter, SlidersHorizontal } from "lucide-react";
-// import { Button } from "@/components/ui/button";
 import PropertyCard from "@/components/rent/property-card";
 import SearchBar from "@/components/rent/search-bar";
 import PropertyMap from "@/components/rent/property-map";
 import FiltersSheet from "@/components/rent/filters-sheet";
 import { properties } from "@/lib/data";
-import { useMediaQuery } from "@/lib/utils"; 
+import { useMediaQuery } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 
-type SortOption = "newest" | "price-asc" | "price-desc" | "size-asc" | "size-desc";
+type SortOption =
+  | "newest"
+  | "price-asc"
+  | "price-desc"
+  | "size-asc"
+  | "size-desc";
 
 const RentPage = () => {
   const [sortOption, setSortOption] = useState<SortOption>("newest");
   const [isFiltersSheetOpen, setIsFiltersSheetOpen] = useState(false);
-  const [savedFiltersCount] = useState(3); 
-  const isDesktop = useMediaQuery("(min-width: 1024px)"); 
+  const [savedFiltersCount] = useState(3);
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const filteredAndSortedProperties = useMemo(() => {
     const currentProperties = [...properties];
@@ -49,7 +59,7 @@ const RentPage = () => {
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500); 
+    const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -67,13 +77,19 @@ const RentPage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-5rem)] bg-gray-50"> 
-      <div className="sticky top-[5rem] z-40 bg-white shadow-sm py-3 px-4 md:px-6 border-b border-gray-200"> 
-        <SearchBar savedFiltersCount={savedFiltersCount} onOpenFilters={() => setIsFiltersSheetOpen(true)} />
+    <div className="flex flex-col flex-1 w-full bg-gray-50">
+      {/* Top Search Bar */}
+      <div className="sticky top-[5rem] z-40 bg-white shadow-sm py-3 px-4 md:px-6 border-b border-gray-200">
+        <SearchBar
+          savedFiltersCount={savedFiltersCount}
+          onOpenFilters={() => setIsFiltersSheetOpen(true)}
+        />
       </div>
 
-      <main className="flex flex-1 flex-col lg:flex-row max-w-7xl mx-auto w-full py-6 px-4 md:px-6 gap-6">
-        <section className="flex flex-col w-full lg:w-[70%]">
+      {/* Main Content */}
+      <main className="flex flex-1 flex-col lg:flex-row w-full px-2 sm:px-4 md:px-6 gap-6 lg:gap-8">
+        {/* Property List */}
+        <section className="flex flex-col w-full lg:w-[65%] xl:w-[60%]">
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center gap-2">
               <h2 className="text-xl font-semibold text-gray-800">
@@ -85,16 +101,25 @@ const RentPage = () => {
             </div>
 
             <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600 hidden sm:block">Sort by:</span>
-              <Select value={sortOption} onValueChange={(value: SortOption) => setSortOption(value)}>
+              <span className="text-sm text-gray-600 hidden sm:block">
+                Sort by:
+              </span>
+              <Select
+                value={sortOption}
+                onValueChange={(value: SortOption) => setSortOption(value)}
+              >
                 <SelectTrigger className="w-[170px] bg-white">
                   <ListFilter className="h-4 w-4 mr-2 text-gray-500" />
                   <SelectValue placeholder="Newest first" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="newest">Newest first</SelectItem>
-                  <SelectItem value="price-asc">Price (lowest first)</SelectItem>
-                  <SelectItem value="price-desc">Price (highest first)</SelectItem>
+                  <SelectItem value="price-asc">
+                    Price (lowest first)
+                  </SelectItem>
+                  <SelectItem value="price-desc">
+                    Price (highest first)
+                  </SelectItem>
                   <SelectItem value="size-asc">Size (smallest first)</SelectItem>
                   <SelectItem value="size-desc">Size (largest first)</SelectItem>
                 </SelectContent>
@@ -102,9 +127,10 @@ const RentPage = () => {
             </div>
           </div>
 
+          {/* Property Grid */}
           <motion.div
-            layout 
-            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
           >
             <AnimatePresence>
               {loading
@@ -130,14 +156,14 @@ const RentPage = () => {
                   ))
                 : displayedOffers === 0
                 ? (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="col-span-full text-center p-12 text-gray-500 text-lg"
-                  >
-                    No properties found matching your criteria.
-                  </motion.div>
-                )
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="col-span-full text-center p-12 text-gray-500 text-lg"
+                    >
+                      No properties found matching your criteria.
+                    </motion.div>
+                  )
                 : filteredAndSortedProperties.map((property, i) => (
                     <motion.div
                       key={property.id}
@@ -154,28 +180,40 @@ const RentPage = () => {
           </motion.div>
         </section>
 
-        {/* Right Section: Map View (Desktop only) */}
+        {/* Map Section (Desktop only) */}
         {isDesktop && (
-          <section className="hidden lg:block lg:w-[30%] relative">
-            <PropertyMap totalOffers={totalOffers} currentOffers={displayedOffers} />
+          <section className="hidden lg:block lg:w-[35%] xl:w-[40%] relative">
+            <PropertyMap
+              totalOffers={totalOffers}
+              currentOffers={displayedOffers}
+            />
           </section>
         )}
       </main>
 
-      {/* Mobile Filters Sheet (FAB for triggering) */}
+      {/* Mobile Filter Button */}
       {!isDesktop && (
         <>
           <motion.button
             className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-indigo-600 text-white shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:hidden"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.5 }}
+            transition={{
+              type: "spring",
+              stiffness: 200,
+              damping: 20,
+              delay: 0.5,
+            }}
             onClick={() => setIsFiltersSheetOpen(true)}
             aria-label="Open filters"
           >
             <SlidersHorizontal className="h-6 w-6" />
           </motion.button>
-          <FiltersSheet isOpen={isFiltersSheetOpen} onOpenChange={setIsFiltersSheetOpen} />
+
+          <FiltersSheet
+            isOpen={isFiltersSheetOpen}
+            onOpenChange={setIsFiltersSheetOpen}
+          />
         </>
       )}
     </div>
