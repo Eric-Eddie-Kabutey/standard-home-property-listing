@@ -1,105 +1,157 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { Button } from "@/components/ui/button"; 
 import type { FC } from "react";
 import { motion, Variants } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import LocationPopup from "./location-popup";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.5 },
+    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
   },
 };
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
+const gambianCities = [
+  "Banjul", "Serekunda", "Brikama", "Bakau", "Lamin", "Sukuta",
+  "Fajara", "Brufut", "Gunjur", "Kotu", "Kololi", "Yundum"
+];
+
 const Hero: FC = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const filteredCities = gambianCities.filter(city =>
+    city.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node)
+      ) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <section className="relative w-full h-[80vh] md:h-[160vh] 2xl:h-[110vh]  bg-black text-white outline overflow-hidden">
-      {/* Background Swirls */}
-      <motion.div
-        initial={{ opacity: 0, scale: 1.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 2, ease: "easeOut" }}
-        className="hidden md:block absolute -top-1/4 left-1/2 -translate-x-1/2 w-[150vw] h-[150vw] md:w-[100vw] md:h-[95vw] 2xl:h-[90vh] pointer-events-none"
-      >
-        <Image src="/background-swirl.svg" alt="background swirl" fill className="opacity-40" />
-      </motion.div>
+    <section className="relative w-full min-h-screen bg-[#0e0b1d] text-white overflow-hidden flex flex-col items-center justify-center py-32">
+      
+      <div 
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+        style={{
+          backgroundImage: 'url("/assets/images/world-map-dark.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: '30% center', 
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.35,
+          filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.5))',
+          transition: 'all 0.5s ease-in-out'
+        }}
+      />
 
-      {/* Globe Background Image */}
-      <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
-        className="hidden md:block absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[60vh] md:h-[80vh] max-w-[1400px] z-10 pointer-events-none"
-      >
-        <Image
-          src="/assets/image/globe.png"
-          alt="SVG Background"
-          fill
-          className="object-contain object-bottom"
-          priority
-        />
-      </motion.div>
-
-      {/* Globe Animated Arcs Layer */}
-      <div className="absolute -bottom-42 md:-bottom-15 2xl:-bottom-35 left-1/2 -translate-x-1/2 w-full h-[60vh] md:h-[80vh] 2xl:-w-full container mx-auto lg:max-w-5xl xl:max-w-6xl z-15 pointer-events-none">
-              {/* <GlobeArcs /> */}
-              <Image src='/assets/images/globe.png' alt="Globe Illustration" fill className="object-contain" priority />
-      </div>
-
-      <LocationPopup className="bottom-0 md:bottom-20 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-
-      {/* Main Content */}
-      <div className="relative h-full flex flex-col items-center z-20 pt-36 md:pt-44 2xl:pt-52">
+   
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center text-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="container mx-auto px-4 flex flex-col items-center text-center"
+          className="w-full flex flex-col items-center"
         >
+         
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-snug"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
           >
-            Turning Ideas Into World
-            <br />
-            Changing Solutions
+            The shortest route to your next home
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="mt-6 max-w-3xl text-lg md:text-xl text-gray-300"
+            className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl"
           >
-            We connect visionaries, innovators, and entrepreneurs with the tools, mentors, and
-            opportunities they need to make an impact.
+            One platform, all the rental listings in the Netherlands.
           </motion.p>
 
+        
           <motion.div
             variants={itemVariants}
-            className="mt-10 flex flex-col sm:flex-row items-center gap-4"
+            className="w-full max-w-2xl relative"
           >
-            <Button
-              size="lg"
-              className="bg-green-500 text-black border-green-400 font-semibold hover:bg-green-600 px-8 py-6 text-base transition-transform hover:scale-105"
-            >
-              Get In Touch
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="bg-gray-100 text-black border-gray-100 hover:bg-gray-200 px-8 py-6 text-base font-semibold transition-transform hover:scale-105"
-            >
-              Explore Our Programs
-            </Button>
+            <div className="flex items-stretch rounded-lg overflow-hidden shadow-2xl bg-white">
+              
+            
+              <div className="relative flex-1" ref={dropdownRef}>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder="Search your city"
+                  value={searchValue}
+                  onChange={(e) => {
+                    setSearchValue(e.target.value);
+                    setShowDropdown(true);
+                  }}
+                  onFocus={() => setShowDropdown(true)}
+                  className="w-full h-full px-6 py-4 text-base text-gray-700 placeholder-gray-400 bg-white border-none focus:outline-none"
+                />
+
+               
+                {showDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-2xl max-h-64 overflow-y-auto z-50 border border-gray-100"
+                  >
+                    {filteredCities.length > 0 ? (
+                      filteredCities.map((city) => (
+                        <button
+                          key={city}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            setSearchValue(city);
+                            setShowDropdown(false);
+                          }}
+                          className="w-full px-6 py-3 text-left text-gray-800 hover:bg-gray-100 transition-colors border-b border-gray-100 last:border-b-0"
+                        >
+                          {city}
+                        </button>
+                      ))
+                    ) : (
+                      <div className="px-6 py-3 text-gray-500 text-sm">No cities found</div>
+                    )}
+                  </motion.div>
+                )}
+              </div>
+
+          
+              <Button
+                size="lg"
+                onClick={() => setShowDropdown(false)}
+                className="bg-[#FF5A33] hover:bg-[#e64d28] text-white font-semibold px-8 py-4 text-base border-none h-auto whitespace-nowrap"
+              >
+                Search for my home
+              </Button>
+            </div>
           </motion.div>
         </motion.div>
+
+        <LocationPopup />
       </div>
     </section>
   );

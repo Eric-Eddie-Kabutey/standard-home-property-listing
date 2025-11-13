@@ -3,7 +3,6 @@
 import type { FC, ReactNode } from "react";
 import { motion, Variants } from "framer-motion";
 import { Bot, BellRing, HatGlasses } from "lucide-react";
-import FeatureBlob from "@/components/ui/feature-bold"; 
 
 interface Feature {
   icon: FC<{ className?: string }>;
@@ -28,7 +27,7 @@ const featuresData: Feature[] = [
     description: (
       <>
         Say goodbye to fake listings and scams thanks to{" "}
-        <span className="text-pink-500 font-medium">RentHunter Active Scam Protection</span>
+        <span className="text-[#FF5A33] font-medium">StandardHomes Active Scam Protection</span>
       </>
     ),
   },
@@ -54,7 +53,7 @@ const Features: FC = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="py-20 md:py-28 bg-white"
+      className="py-20 md:py-28 bg-white" 
     >
       <div className="container mx-auto lg:max-w-5xl xl:max-w-6xl">
         {/* --- Heading Area --- */}
@@ -62,8 +61,8 @@ const Features: FC = () => {
           <p className="text-lg md:text-xl text-slate-500">
             Finding a home is hard,
           </p>
-          <h2 className="mt-1 text-4xl md:text-5xl font-bold text-[#0A2540]">
-            RentHunter solves it
+          <h2 className="mt-1 text-4xl md:text-5xl font-bold text-[#0A2540]"> 
+            StandardHomes solves it
           </h2>
         </motion.div>
 
@@ -78,13 +77,12 @@ const Features: FC = () => {
                 className="flex flex-col items-center text-center"
               >
                 <div className="relative w-40 h-40 flex items-center justify-center mb-6">
-                  <FeatureBlob
-                    index={index}
-                    className="absolute w-full h-full text-slate-100"
+                  <div
+                    className={`absolute w-full h-full rounded-full bg-[#e8f1ff]`} 
                   />
-                  <Icon className="relative w-12 h-12 text-[#0A2540]" />
+                  <Icon className="relative w-12 h-12 text-[#0A2540]" /> 
                 </div>
-                <h3 className="text-2xl font-bold text-[#0A2540]">
+                <h3 className="text-2xl font-bold text-[#0A2540]"> 
                   {feature.title}
                 </h3>
                 <p className="mt-3 text-slate-600 max-w-xs">
