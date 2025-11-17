@@ -57,7 +57,7 @@ const Hero: FC = () => {
         style={{
           backgroundImage: 'url("/assets/images/world-map-dark.png")',
           backgroundSize: 'cover',
-          backgroundPosition: '30% center', 
+          backgroundPosition: 'center 25%',
           backgroundRepeat: 'no-repeat',
           opacity: 0.35,
           filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.5))',
@@ -65,7 +65,6 @@ const Hero: FC = () => {
         }}
       />
 
-   
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 flex flex-col items-center justify-center text-center">
         <motion.div
           variants={containerVariants}
@@ -73,7 +72,7 @@ const Hero: FC = () => {
           animate="visible"
           className="w-full flex flex-col items-center"
         >
-         
+          
           <motion.h1
             variants={itemVariants}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
@@ -85,18 +84,15 @@ const Hero: FC = () => {
             variants={itemVariants}
             className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl"
           >
-            One platform, all the rental listings in the Netherlands.
+            One platform, all the rental listings in the Gambia.
           </motion.p>
 
-        
-          <motion.div
-            variants={itemVariants}
-            className="w-full max-w-2xl relative"
-          >
-            <div className="flex items-stretch rounded-lg overflow-hidden shadow-2xl bg-white">
-              
-            
-              <div className="relative flex-1" ref={dropdownRef}>
+          <motion.div variants={itemVariants} className="w-full max-w-2xl relative">
+
+          <div className="flex items-stretch rounded-lg shadow-2xl bg-[#1A1625] border border-[#2a2438] relative overflow-visible">
+
+            <div className="relative flex-1 overflow-visible" ref={dropdownRef}>
+
                 <input
                   ref={inputRef}
                   type="text"
@@ -107,16 +103,18 @@ const Hero: FC = () => {
                     setShowDropdown(true);
                   }}
                   onFocus={() => setShowDropdown(true)}
-                  className="w-full h-full px-6 py-4 text-base text-gray-700 placeholder-gray-400 bg-white border-none focus:outline-none"
+                  className="w-full h-full px-6 py-4 text-base text-gray-200 placeholder-gray-400 bg-transparent border-none focus:outline-none"
                 />
 
-               
                 {showDropdown && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-2xl max-h-64 overflow-y-auto z-50 border border-gray-100"
+                    className="absolute top-full left-0 right-0 mt-2 
+                               bg-[#1E1A2E] text-gray-200
+                               rounded-lg shadow-2xl max-h-64 overflow-y-auto 
+                               z-[999] border border-[#2a2438]"
                   >
                     {filteredCities.length > 0 ? (
                       filteredCities.map((city) => (
@@ -127,19 +125,20 @@ const Hero: FC = () => {
                             setSearchValue(city);
                             setShowDropdown(false);
                           }}
-                          className="w-full px-6 py-3 text-left text-gray-800 hover:bg-gray-100 transition-colors border-b border-gray-100 last:border-b-0"
+                          className="w-full px-6 py-3 text-left text-gray-200 
+                                     hover:bg-[#2a2438] transition-colors 
+                                     border-b border-[#2a2438] last:border-b-0"
                         >
                           {city}
                         </button>
                       ))
                     ) : (
-                      <div className="px-6 py-3 text-gray-500 text-sm">No cities found</div>
+                      <div className="px-6 py-3 text-gray-400 text-sm">No cities found</div>
                     )}
                   </motion.div>
                 )}
               </div>
 
-          
               <Button
                 size="lg"
                 onClick={() => setShowDropdown(false)}
